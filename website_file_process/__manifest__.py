@@ -20,7 +20,7 @@
 
 {
     'name': 'Webiste file process',
-    'summary': 'A module that can check the size of files and, if necessary, make them more suitable',
+    'summary': 'Webiste file process',
     'version': '12.0.0.0.1',
     'category': 'Website',
     'website': 'http://www.tawasta.fi',

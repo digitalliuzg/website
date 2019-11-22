@@ -19,7 +19,10 @@ class WebsiteVisitorImage(models.Model):
     image_url = fields.Char(string="Image URL")
     filename = fields.Char(string="Filename")
     attachment = fields.Many2one(
-        string="Attachment Image", comodel_name="ir.attachment", ondelete="cascade")
+        string="Attachment Image",
+        comodel_name="ir.attachment",
+        ondelete="cascade"
+    )
     attachment_image = fields.Binary(related="attachment.datas")
 
     def get_category_list(self):
@@ -33,7 +36,9 @@ class WebsiteVisitorImage(models.Model):
         for category in self.env['vimage.category'].search([]):
             image_urls = [category.name]
             for image in self.search([
-                ('category.id', '=', category.id), ('website_published', '=', True)]):
+                ('category.id', '=', category.id),
+                ('website_published', '=', True),
+            ]):
                 image_urls.append(image.image_url)
             ret.append(image_urls)
         return ret
