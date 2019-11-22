@@ -2,18 +2,18 @@
 <odoo>
     <data noupdate="0">
         <!-- Image max dimensions -->
-        <record id="skills_image_max_width" model="ir.config_parameter">
+        <record id="image_max_width" model="ir.config_parameter">
             <field name="key">website_file_process.image_max_width</field>
             <field name="value">1080</field>
         </record>
 
-        <record id="skills_image_max_height" model="ir.config_parameter">
+        <record id="image_max_height" model="ir.config_parameter">
             <field name="key">website_file_process.image_max_height</field>
             <field name="value">1080</field>
         </record>
 
         <!-- Attachment max filesize in MB -->
-        <record id="skills_attachment_max_size" model="ir.config_parameter">
+        <record id="attachment_max_size" model="ir.config_parameter">
             <field name="key">website_file_process.attachment_max_size</field>
             <field name="value">20</field>
         </record>
