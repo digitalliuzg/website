@@ -26,7 +26,9 @@ odoo.define('website_file_process.submission', function (require) {
                     newinput.type = 'hidden';
                     newinput.name = 'resized';
                     newinput.value = resized;
-                    $('#submission_form').append(newinput);
+                    var form_ID = $(this).closest("form").attr('id');
+                    console.log(form_ID);
+                    form_ID.append(newinput);
                     $.unblockUI();
                 }
             };

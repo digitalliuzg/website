@@ -121,3 +121,5 @@ def process_message(self, user, record, data):
             too_big = process_file(file)
             if too_big:
                 error = True
+
+                return error
