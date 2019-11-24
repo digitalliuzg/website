@@ -41,7 +41,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     # 2. Fields declaration
-    unread_messages_notifications = fields.Boolean(
+    unread_msg_notifications = fields.Boolean(
         string="Unread messages' notifications",
         help="Enable unread messages' notifications on website",
     )
@@ -60,14 +60,14 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        unread_messages_notifications = self.env['ir.config_parameter'].sudo().get_param(
+        unread_msg_notifications = self.env['ir.config_parameter'].sudo().get_param(
             'website_unread_messages.notifications', False
         )
         unread_messages_page = self.env['ir.config_parameter'].sudo().get_param(
             'website_unread_messages.page', False
         )
         res.update(
-            unread_messages_notifications=unread_messages_notifications,
+            unread_msg_notifications=unread_msg_notifications,
             unread_messages_page=unread_messages_page,
         )
         return res
@@ -76,7 +76,7 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param(
-            'website_unread_messages.notifications', self.unread_messages_notifications
+            'website_unread_messages.notifications', self.unread_msg_notifications
         )
         self.env['ir.config_parameter'].sudo().set_param(
             'website_unread_messages.page', self.unread_messages_page

@@ -51,7 +51,8 @@ class VisitorImgUpload(http.Controller):
                         'name': filename,
                         'filename': filename,
                         'attachment': attachment.id,
-                        'image_url': "/web/image/" + str(attachment.id) + "/" + filename,
+                        'image_url': "/web/image/" +
+                        str(attachment.id) + "/" + filename,
                         'category': category.id,
                     })
 
