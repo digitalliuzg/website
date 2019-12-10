@@ -105,8 +105,8 @@ def process_message(self, user, record, data):
     error = False
     if comment:
         if image:
-                # Transparent PNG's have black background, but this shouldn't
-                # be a big issue
+            # Transparent PNG's have black background, but this shouldn't
+            # be a big issue
             if data.get('resized'):
                 img_string = data.get('resized').split(",")[1]
                 image_data = base64.b64decode(img_string)
@@ -121,5 +121,4 @@ def process_message(self, user, record, data):
             too_big = process_file(file)
             if too_big:
                 error = True
-
-                return error
+    return error
