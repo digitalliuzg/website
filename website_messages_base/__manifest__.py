@@ -19,9 +19,9 @@
 ##############################################################################
 
 {
-    'name': 'Website All Messages',
-    'summary': 'All messages for website',
-    'version': '12.0.2.0.0',
+    'name': 'Website Messages Base',
+    'summary': 'Base for website messages features',
+    'version': '12.0.0.1.0',
     'category': 'Website',
     'website': 'https://github.com/Tawasta/website',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -29,11 +29,13 @@
     'application': False,
     'installable': True,
     'depends': [
-        'website_messages_base',
+        'mail',
+        'website_utilities',
     ],
     'data': [
-        'data/website_all_messages_data.xml',
+        'security/ir.model.access.csv',
         'views/res_config_settings_views.xml',
-        'views/website_all_messages.xml',
+        'views/website_message_format.xml',
+        'views/website_message_templates.xml',
     ],
 }

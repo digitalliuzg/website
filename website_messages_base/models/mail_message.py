@@ -62,7 +62,7 @@ class MailMessage(models.Model):
             # Find url format from system parameters
             # which can be find by key
             # unread_messages_format.<model_name>
-            rec = self.env['unread.message'].search([
+            rec = self.env['website.message.format'].search([
                 ('res_model', '=', record.model)
             ])
             if rec:

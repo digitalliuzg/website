@@ -19,9 +19,9 @@
 ##############################################################################
 
 {
-    'name': 'Website All Messages',
-    'summary': 'All messages for website',
-    'version': '12.0.2.0.0',
+    'name': 'Website Channel Messages',
+    'summary': 'Channelmessages for website',
+    'version': '12.0.1.0.0',
     'category': 'Website',
     'website': 'https://github.com/Tawasta/website',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -32,8 +32,8 @@
         'website_messages_base',
     ],
     'data': [
-        'data/website_all_messages_data.xml',
-        'views/res_config_settings_views.xml',
-        'views/website_all_messages.xml',
+        'data/website_message_format.xml',
+        'security/ir.model.access.csv',
+        'views/website_channel_messages.xml',
     ],
 }

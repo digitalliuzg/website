@@ -2,19 +2,16 @@
 <odoo>
 
     <!-- Add link to navigation bar -->
-    <template id="header" inherit_id="website_unread_messages.header">
-        <xpath expr="//a[@href='/unread_messages']/.." position="after">
-            <t t-set="partner" t-value="request.env.user.partner_id"/>
-            <t t-if="request.env.ref('base.public_partner').id != partner.id">
-                <t t-set="is_enabled" t-value="request.env['ir.config_parameter'].sudo().get_param('website_all_messages.page')"/>
-                <li t-att-class="'' if is_enabled else 'd-none'">
-                    <a class="dropdown-item" href="/all_messages">
-                        <span>All</span>
-                        <span class="sr-only">All messages</span>
-                    </a>
-                </li>
-            </t>
-        </xpath>
+    <template id="header" inherit_id="website_messages_base.header">
+        <xpath expr="//li[@id='website_messages_dropdown']/ul" position="inside">
+            <t t-set="is_enabled" t-value="request.env['ir.config_parameter'].sudo().get_param('website_all_messages.page', False)"/>
+            <li t-att-class="'' if is_enabled else 'd-none'">
+                <a class="dropdown-item" href="/all_messages">
+                    <span>All</span>
+                    <span class="sr-only">All messages</span>
+                </a>
+            </li>
+         </xpath>
     </template>
 
     <!-- Page for showing all messages and links to the pages -->

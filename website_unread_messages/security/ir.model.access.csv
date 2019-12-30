@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-admin_unread_message,admin_unread_message,model_unread_message,base.group_no_one,1,1,1,1
-portal_user_unread_message,portal_user_unread_message,model_unread_message,base.group_portal,1,1,0,0

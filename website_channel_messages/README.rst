@@ -2,13 +2,17 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=======================
-Website Unread Messages
-=======================
+========================
+Website Channel Messages
+========================
 
-Adds unread messages feature to website messages.
-Notifications are enabled by default, but can be disabled under website settings (Website > Configuration > Settings).
-The configuration is located below "Website messages" -heading.
+Adds channels messaging -feature to website.
+Uses CKEditor as RTE to post messages to channels.
+
+TODO:
+* Finish the generic message processing module for portal/website to get
+rid of boilerplate code.
+
 
 Installation
 ============
@@ -34,7 +38,6 @@ Contributors
 ------------
 
 * Aleksi Savijoki <aleksi.savijoki@tawasta.fi>
-* Valtteri Lattu <valtteri.lattu@tawasta.fi>
 
 Maintainer
 ----------

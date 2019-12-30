@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="website_message_format_tree_view" model="ir.ui.view">
+        <field name="name">website.message.format.tree.view</field>
+        <field name="model">website.message.format</field>
+        <field name="arch" type="xml">
+            <tree string="Website message format" editable="top">
+                <field name="id"/>
+                <field name="res_model" colspan="4"/>
+                <field name="url_format" colspan="4"/>
+            </tree>
+        </field>
+    </record>
+
+    <act_window id="action_website_message_format"
+        name="Website message formats"
+        res_model="website.message.format"
+        view_mode="tree"
+        limit="80" />
+    
+    <menuitem
+        id="menu_website_message_format"
+        name="Website message formats"
+        action="action_website_message_format"
+        parent="base.menu_custom"
+        sequence="100"
+        groups="base.group_no_one"
+        />
+</odoo>

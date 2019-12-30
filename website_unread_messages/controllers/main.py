@@ -164,7 +164,8 @@ class WebsiteUnreadMessagesController(http.Controller):
         search_url = ('/unread_messages?%s' % (search))
 
         message_start = abs(50 - page * pager_limit) + 1
-        message_end = total_count if total_count < page * pager_limit else page * pager_limit
+        message_end = total_count if total_count < page * pager_limit \
+            else page * pager_limit
         visible = "{} - {} / {}".format(message_start, message_end, total_count)
 
         values = {

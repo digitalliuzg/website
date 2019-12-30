@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="website_message_format_channel_messages" model="website.message.format"  forcecreate="False">
+            <field name="res_model" ref="mail.model_mail_channel"/>
+            <field name="url_format">/website_channel/:res_id</field>
+        </record>
+    </data>
+</odoo>

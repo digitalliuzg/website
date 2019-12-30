@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_website_message_format,admin_website_message_format,model_website_message_format,base.group_no_one,1,1,1,1
+portal_user_website_message_format,portal_user_website_message_format,model_website_message_format,base.group_portal,1,1,0,0

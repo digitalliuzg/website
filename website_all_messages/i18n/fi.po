@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* website_all_messages
+#   * website_all_messages
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-01 17:32+0000\n"
-"PO-Revision-Date: 2019-11-01 19:34+0200\n"
+"POT-Creation-Date: 2019-12-05 10:56+0000\n"
+"PO-Revision-Date: 2019-12-30 15:51+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "<span aria-label=\"Sulje\">&amp;times;</span>"
 #: model_terms:ir.ui.view,arch_db:website_all_messages.header
 msgid ""
 "<span>All</span>\n"
-"                        <span class=\"sr-only\">All messages</span>"
+"                    <span class=\"sr-only\">All messages</span>"
 msgstr ""
 "<span>Kaikki</span>\n"
 "                        <span class=\"sr-only\">Kaikki viestit</span>"

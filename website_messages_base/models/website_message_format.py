@@ -19,12 +19,11 @@
 ##############################################################################
 
 # 1. Standard library imports:
-import logging
 
 # 2. Known third party imports:
 
 # 3. Odoo imports:
-from odoo import api, models
+from odoo import fields, models, _
 
 # 4. Imports from Odoo modules:
 
@@ -33,48 +32,32 @@ from odoo import api, models
 # 6. Unknown third party imports:
 
 
-_logger = logging.getLogger(__name__)
-
-
-class ResPartner(models.Model):
+class WebsiteMessageFormat(models.Model):
 
     # 1. Private attributes
-    _inherit = 'res.partner'
+    _name = 'website.message.format'
+    _description = 'Website messages'
+    _sql_constraints = [
+        ('res_model', 'unique(res_model)',
+         _('This model already has a format.'))
+    ]
 
     # 2. Fields declaration
+    res_model = fields.Many2one(
+        'ir.model',
+        string='Resources model',
+        help='For what model the format is valid',
+        required=True,
+    )
+    url_format = fields.Char(
+        string='URL format of the model',
+        help='This field defines the URL format for model',
+        required=True,
+    )
 
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
-    @api.model
-    def get_portal_needaction_count(self):
-        """
-        Compute the number of needaction in portal of the current user.
-
-        1) Search for the models that have set unread_messages_format.<model>
-        (these are the "portal messages")
-        2) Find messages that have one of these models
-        """
-        if self.env.user.partner_id:
-            enabled_models = self.env['website.message.format'].search([])
-            model_list = list()
-            for rec in enabled_models:
-                model_list.append(rec.res_model.model)
-
-            self.env.cr.execute("""
-                SELECT count(*) as needaction_count
-                FROM mail_message_res_partner_needaction_rel
-                R RIGHT JOIN mail_message
-                M ON (M.id = R.mail_message_id)
-                WHERE R.res_partner_id = %s
-                AND M.model IN %s
-                AND M.website_published = true
-                AND (R.is_read = false OR R.is_read IS NULL)""",
-                                (self.env.user.partner_id.id,
-                                 tuple(model_list)))
-            return (self.env.cr.dictfetchall()[0].get('needaction_count'))
-        _logger.error('Call to needaction_count without partner_id')
-        return 0
 
     # 5. Constraints and onchanges
 

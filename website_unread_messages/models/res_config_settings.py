@@ -60,15 +60,15 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        unread_messages_notifications = self.env['ir.config_parameter'].sudo().get_param(
+        notifications = self.env['ir.config_parameter'].sudo().get_param(
             'website_unread_messages.notifications', False
         )
-        unread_messages_page = self.env['ir.config_parameter'].sudo().get_param(
+        page = self.env['ir.config_parameter'].sudo().get_param(
             'website_unread_messages.page', False
         )
         res.update(
-            unread_messages_notifications=unread_messages_notifications,
-            unread_messages_page=unread_messages_page,
+            unread_messages_notifications=notifications,
+            unread_messages_page=page,
         )
         return res
 

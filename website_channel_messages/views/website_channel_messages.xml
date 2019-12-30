@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="header" inherit_id="website_messages_base.header">
+        <xpath expr="//li[@id='website_messages_dropdown']/ul" position="inside">
+            <li>
+                <a class="dropdown-item" href="/website_channel">
+                    <span>Channels</span>
+                    <span class="sr-only">Website channels</span>
+                </a>
+            </li>
+         </xpath>
+    </template>
+
+    <template id="my_channels" name="My channels">
+        <t t-call="website.layout">
+            <t t-set="title">My channels</t>
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1 class="mt-4">
+                        My channels
+                    </h1>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="dropdown channels-dropdown pull-right">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-cog"/>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button type="button" class="dropdown-item" title="Create channel"
+                                            data-toggle="modal" data-target="#modal_create_channel">
+                                        Create channel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-if="channels or current_search">
+                        <div class="row mt-4 mb-4">
+                            <div class="col-12">
+                                <form t-att-action="search_url" method="get" class="form-inline">
+                                    <t t-call="website.website_search_box"/>
+                                </form>
+                                <div class="mt-3 h5" t-if="current_search">
+                                    <span>Showing results with search: </span>
+                                    <a t-att-href="request.httprequest.path" class="badge badge-secondary">
+                                        <t t-esc="current_search"/>
+                                        <span aria-label="Close">&amp;times;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-if="channels">
+                            <div class="row align-items-end">
+                                <div class="col-6 mb-3">
+                                    <span t-esc="visible_messages"/>
+                                </div>
+                                <div class="col-6">
+                                    <t t-if="pager" t-call="website_utilities.custom_pager">
+                                        <t t-set="classname">pull-right</t>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-hover status_table">
+                                        <thead>
+                                            <tr class="active">
+                                                <th>Participants</th>
+                                                <th>Last message sent</th>
+                                                <th>Last message by</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-foreach="channels" t-as="ch">
+                                            <tr t-attf-id="channel_{{ch.id}}">
+                                                <td>
+                                                    <a t-attf-href="/website_channel/{{ch.id}}">
+                                                        <t t-foreach="ch.channel_last_seen_partner_ids" t-as="partner">
+                                                            <t t-if="partner.partner_id.id != request.env.user.partner_id.id">
+                                                                <t t-esc="partner.partner_id.name"/><t t-if="partner_index + 1 &lt; len(ch.channel_last_seen_partner_ids) and len(ch.channel_last_seen_partner_ids) &gt; 2">,</t>
+                                                            </t>
+                                                        </t>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <t t-if="ch.channel_message_ids">
+                                                        <span t-field="ch.channel_message_ids[0].create_date" t-options='{"format": "dd.MM.yyyy HH:mm"}'/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span>-</span>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="ch.channel_message_ids[0].author_id.name if ch.channel_message_ids else '-'"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </table>
+                                </div>
+                            </div>
+                            <t t-if="pager" t-call="website_utilities.custom_pager">
+                                <t t-set="classname">pull-right</t>
+                            </t>
+                        </t>
+                    </t>
+                    <t t-if="not channels and not current_search">
+                        <div class="mt-5">
+                            <h2 class="text-center">You don't have any channels!</h2>
+                        </div>
+                    </t>
+                    <t t-if="not channels and current_search">
+                        <div class="mt-5 h4 text-center">
+                            <p>
+                                Your current search didn't match any channel names or participants.
+                            </p>
+                            <p>
+                                Please try again.
+                            </p>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <t t-call="website_channel_messages.create_channel"/>
+            <script type="text/javascript" src="/website_channel_messages/static/src/js/channels.js?v=001"></script>
+        </t>
+    </template>
+
+    <template id="create_channel" name="Create channel">
+        <div id="modal_create_channel" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="Create channel modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create channel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-label="Close">&amp;times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="h5">Select recipients</span>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <select id="recipients" class="form-control select2" name="recipients" multiple="1">
+                                    <t t-foreach="partners" t-as="partner">
+                                        <option t-att-value="partner.id" t-esc="partner.name"/>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="create_channel_confirm" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="channel" name="Channel">
+        <t t-call="website.layout">
+            <t t-set="title">Channel</t>
+            <div id="maincontent" t-att-data-timestamp="time.time()" t-att-data-record-id="channel.id">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h3 class="mt-5">Channel participants</h3>
+                            <t t-foreach="channel.channel_last_seen_partner_ids" t-as="partner">
+                                <span t-if="partner.partner_id.id != request.env.user.partner_id.id"
+                                    class="d-block" t-field="partner.partner_id.name"/>
+                            </t>
+                        </div>
+                    </div>
+                    <t t-call="website_channel_messages.submission_section"/>
+                    <hr/>
+                    <t t-call="website_channel_messages.channel_message_thread"/>
+                </div>
+            </div>
+            <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/translations/fi.js"></script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/translations/sv.js"></script>
+            <script type="text/javascript" src="/website_channel_messages/static/src/js/submission.js?v=001"></script>
+            <script type="text/javascript" src="/website_channel_messages/static/src/js/thread.js?v=001"></script>
+            <script type="text/javascript" src="/website_channel_messages/static/src/js/files.js?v=001"></script>
+        </t>
+    </template>
+
+    <template id="submission_section" name="Message submission section">
+        <div class="submission-section">
+            <form id="submission_form" method="post" enctype="multipart/form-data"
+                t-attf-action="{{request.httprequest.path}}/message">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="redirect_url" t-att-value="request.httprequest.path"/>
+                <div class="row">
+                    <div class="col-12 comment-container">
+                        <textarea id="comment" name="comment" class="d-none" placeholder="Write a message..."/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 pr-0">
+                        <button type="button" class="file-upload btn btn-primary btn-block btn-lg rounded-0">
+                            <span><i class="fa fa-camera"></i></span>
+                            <input type="file" class="upload" id="image" name="image" 
+                                accept="image/*" capture="camera" 
+                                t-att-data-maxwidth="maxwidth" t-att-data-maxheight="maxheight"/>
+                        </button>
+                    </div>
+                    <div class="col-6 pl-0">
+                        <button type="button" class="file-upload btn btn-success btn-block btn-lg rounded-0">
+                            <span><i class="fa fa-paperclip"></i></span>
+                            <input type="file" class="upload" id="file" name="file" t-att-data-maxsize="maxsize"/>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button id="submission_submit" type="button" class="btn btn-default btn-block btn-lg rounded-0" disabled="disabled">
+                            <span>Submit <i class="fa fa-paper-plane"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="alert alert-info d-none" id="submission_info_div"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </template>
+
+    <template id="channel_message_thread" name="Channel messages thread">
+        <h2 class="mb-3">Messages</h2>
+        <!-- TODO: Fix data interval to be fetched from icp? -->
+        <div id="channel_messages" data-interval="30000">
+            <t t-foreach="channel.message_ids" t-as="message">
+                <t t-call="website_channel_messages.single_message">
+                    <t t-set="message" t-value="message"/>
+                </t>
+            </t>
+            <t t-if="not channel.message_ids">
+                <div class="mt-5 text-center">
+                    <span class="h3">This channel has no messages yet!</span>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <template id="single_message" name="Single message template">
+        <div class="media message mb16">
+            <img class="img-fluid rounded-circle mr-3" alt="Partner image" title="Partner image"
+                t-attf-src="/web/image/res.partner/{{message.author_id.id}}/image_small"/>
+            <div class="media-body">
+                <h5 class="d-inline-block mt-0">
+                    <t t-esc="message.author_id.name"/> <small t-field="message.date" t-options='{"format": "dd.MM.yyyy HH:mm:ss"}'/>
+                </h5>
+                <h4 t-if="message.subject" t-esc="message.subject" class="message-subject"/>
+                <p t-raw="message.body"/>
+                <t t-foreach="message.attachment_ids" t-as="attachment">
+                    <t t-set="attachment_type" t-value="attachment.mimetype.split('/')[0]"/>
+                    <t t-if="attachment_type in ['image', 'audio', 'video']">
+                        <t t-if="'image/' in attachment.mimetype">
+                            <img class="img-fluid msg-img" t-attf-data-src="/web/content/{{attachment.id}}/{{attachment.datas_fname}}"
+                                t-att-alt="attachment.name" t-att-title="attachment.name"/>
+                        </t>
+                        <t t-else="">
+                            <t t-if="'audio/' in attachment.mimetype">
+                                <audio controls="true">
+                                    <source t-att-src="'/web/content/%s' % (attachment.id)" t-att-type="attachment.mimetype"/>
+                                    <p>Your browser doesn't support HTML5 audio.</p>
+                                </audio>
+                            </t>
+                            <t t-else="">
+                                <video controls="true">
+                                    <source t-att-src="'/web/content/%s' % (attachment.id)" t-att-type="attachment.mimetype"/>
+                                    <p>Your browser doesn't support HTML5 video.</p>
+                                </video>
+                            </t>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <div class="attachment-mime-image col-4 col-md-2 text-center">
+                            <a target="_blank" t-att-title="attachment.name"
+                                t-attf-href="/web/content/{{attachment.id}}/{{attachment.datas_fname}}">
+                                <div class='oe_attachment_embedded o_image o_image_small'
+                                    t-att-title="attachment.name" t-att-data-mimetype="attachment.mimetype" t-attf-data-src="/web/image/#{attachment.id}/50x40"/>
+                                <div class='oe_attachment_name text-truncate'><t t-esc='attachment.name'/></div>
+                            </a>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </template>
+</odoo>

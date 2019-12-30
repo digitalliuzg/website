@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports:
-from odoo import fields, models, _
+from odoo import api, models
 
 # 4. Imports from Odoo modules:
 
@@ -32,28 +32,12 @@ from odoo import fields, models, _
 # 6. Unknown third party imports:
 
 
-class UnreadMessage(models.Model):
+class MailThread(models.AbstractModel):
 
     # 1. Private attributes
-    _name = 'unread.message'
-    _description = 'Website unread messages'
-    _sql_constraints = [
-        ('res_model', 'unique(res_model)',
-         _('This model already has a format.'))
-    ]
+    _inherit = 'mail.thread'
 
     # 2. Fields declaration
-    res_model = fields.Many2one(
-        'ir.model',
-        string='Resources model',
-        help='For what model the format is valid',
-        required=True,
-    )
-    url_format = fields.Char(
-        string='URL format of the model',
-        help='This field defines the URL format for model',
-        required=True,
-    )
 
     # 3. Default methods
 
@@ -66,3 +50,26 @@ class UnreadMessage(models.Model):
     # 7. Action methods
 
     # 8. Business methods
+    @api.multi
+    def mark_portal_messages_read(self):
+        """
+        Mark messages read for the current partner.
+
+        :return: list of message IDs
+        """
+        partner_id = self.env.user.partner_id.id
+        domain = [
+            ('model', '=', self._name),
+            ('res_id', 'in', self.ids),
+            ('website_published', '=', True),
+            ('notification_ids.res_partner_id', '=', partner_id),
+            ('notification_ids.is_read', '=', False),
+        ]
+        messages = self.env['mail.message'].sudo().search(domain)
+        notifications = self.env['mail.notification'].sudo().search([
+            ('mail_message_id', 'in', messages.ids),
+            ('res_partner_id', '=', partner_id),
+            ('is_read', '=', False),
+        ])
+        notifications.write({'is_read': True})
+        return messages.ids

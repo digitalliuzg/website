@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_channel_messages
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-13 11:57+0000\n"
+"PO-Revision-Date: 2019-12-13 14:01+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fi\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/files.js:15
+#, python-format
+msgid " file(s) selected:"
+msgstr " tiedosto(a) valittu:"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "<span aria-label=\"Close\">&amp;times;</span>"
+msgstr "<span aria-label=\"Sulje\">&amp;times;</span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.channel_message_thread
+msgid "<span class=\"h3\">This channel has no messages yet!</span>"
+msgstr "<span class=\"h3\">Tässä keskustelussa ei ole vielä viestejä!</span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+msgid "<span class=\"h5\">Select recipients</span>"
+msgstr "<span class=\"h5\">Valitse vastaanottajat</span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.header
+msgid ""
+"<span>Channels</span>\n"
+"                    <span class=\"sr-only\">Website channels</span>"
+msgstr ""
+"<span>Keskustelut</span>\n"
+"                    <span class=\"sr-only\">Keskustelut</span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "<span>Showing results with search: </span>"
+msgstr "<span>Näytetään tulokset haulla: </span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.submission_section
+msgid "<span>Submit <i class=\"fa fa-paper-plane\"/></span>"
+msgstr "<span>Lähetä <i class=\"fa fa-paper-plane\"/></span>"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+msgid "Cancel"
+msgstr "Peruuta"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.channel
+msgid "Channel"
+msgstr "Keskustelu"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.channel
+msgid "Channel participants"
+msgstr "Keskustelun osallistujat"
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/channels.js:46
+#, python-format
+msgid "Click here to open channel"
+msgstr "Klikkaa tästä avataksesi keskustelun"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+msgid "Close"
+msgstr "Sulje"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+msgid "Create"
+msgstr "Luo"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.create_channel
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Create channel"
+msgstr "Luo keskustelu"
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/files.js:16
+#, python-format
+msgid "File name: "
+msgstr "Tiedoston nimi: "
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/files.js:18
+#, python-format
+msgid "File size too big! Max size for file is "
+msgstr "Tiedoston koko on liian suuri! Maksimikoko tiedostolle on "
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/files.js:17
+#, python-format
+msgid "File size: "
+msgstr "Tiedoston koko: "
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Last message by"
+msgstr "Viimeinen viesti"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Last message sent"
+msgstr "Viimeksi päivitetty"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.channel_message_thread
+msgid "Messages"
+msgstr "Viestit"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "My channels"
+msgstr "Omat keskustelut"
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/thread.js:29
+#, python-format
+msgid "New message arrived!"
+msgstr "Uusi viesti saapui!"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Participants"
+msgstr "Osallistujat"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.single_message
+msgid "Partner image"
+msgstr "Henkilön kuva"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Please try again."
+msgstr "Ole hyvä ja yritä uudelleen."
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.submission_section
+msgid "Write a message..."
+msgstr "Kirjoita viesti..."
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/channels.js:44
+#, python-format
+msgid "You already have a chat with these recipients."
+msgstr "Sinulla on jo keskustelu näiden vastaanottajien kanssa."
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "You don't have any channels!"
+msgstr "Sinulla ei ole vielä yhtään keskustelua."
+
+#. module: website_channel_messages
+#. openerp-web
+#: code:addons/website_channel_messages/static/src/js/channels.js:36
+#, python-format
+msgid "You must select recipient!"
+msgstr "Sinun tulee valita vähintään yksi osallistuja!"
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.single_message
+msgid "Your browser doesn't support HTML5 audio."
+msgstr "Selaimesi ei tue HTML5 ääntä."
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.single_message
+msgid "Your browser doesn't support HTML5 video."
+msgstr "Selaimesi ei tue HTML5 videota."
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "Your current search didn't match any channel names or participants."
+msgstr "Nykyinen hakusi ei vastannut minkään keskustelun osallistujien nimiä."
+
+#. module: website_channel_messages
+#: model_terms:ir.ui.view,arch_db:website_channel_messages.my_channels
+msgid "pull-right"
+msgstr ""

@@ -14,6 +14,8 @@ addon | version | summary
 --- | --- | ---
 [website_cookie_notice_extension](website_cookie_notice_extension/) | 12.0.1.0.0 | Cookie notice disclaimer on website
 [website_kanban_board](website_kanban_board/) | 12.0.1.0.0 | Website Kanban Board
+[website_messages_base](website_messages_base/) | 12.0.1.0.0 | Base for website messages
+[website_all_messages](website_all_messages/) | 12.0.1.0.0 | All messages for website
 [website_unread_messages](website_unread_messages/) | 12.0.1.0.0 | Unread messages for website
 [website_utilities](website_utilities/) | 12.0.1.0.0 | Useful website utilities
 [website_header_language_selector](website_header_language_selector/) | 12.0.1.0.0 | Language selector for website header

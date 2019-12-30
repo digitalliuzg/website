@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <template id="header" inherit_id="website_messages_base.header">
+        <xpath expr="//span[@id='website_messages_menu']" position="replace">
+            <t t-set="unread_messages_count" t-value="partner.sudo(request.env.user).get_portal_needaction_count()" />
+            <span id="website_messages_menu">Messages <sup class="messages_quantity badge badge-primary" t-esc="unread_messages_count or '0'" /></span>
+        </xpath>
 
-    <!-- Add link to navigation bar when user has unread messages -->
-    <template id="header" inherit_id="website.layout" name="Unread Messages Link">
-        <xpath expr="//header//ul[@id='top_menu']/li" position="before">
-            <t t-set="partner" t-value="request.env.user.partner_id"/>
-            <t t-if="request.env.ref('base.public_partner').id != partner.id">
-                <t t-set="unread_messages_count" t-value="partner.sudo(request.env.user).get_portal_needaction_count()" />
-                <t t-set="is_enabled" t-value="request.env['ir.config_parameter'].sudo().get_param('website_unread_messages.page', False)"/>
-                <li t-att-class="'nav-item dropdown' if is_enabled else 'd-none'">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <span>Messages <sup class="messages_quantity badge badge-primary" t-esc="unread_messages_count or '0'" /></span>
-                        <span class="sr-only">Unread messages</span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a class="dropdown-item" href="/unread_messages">
-                                <span>Unread</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </t>
+        <xpath expr="//li[@id='website_messages_dropdown']/ul" position="inside">
+            <t t-set="is_enabled" t-value="request.env['ir.config_parameter'].sudo().get_param('website_unread_messages.page', False)"/>
+            <li t-att-class="'' if is_enabled else 'd-none'">
+                <a class="dropdown-item" href="/unread_messages">
+                    <span>Unread</span>
+                    <span class="sr-only">Unread messages</span>
+                </a>
+            </li>
         </xpath>
     </template>
 

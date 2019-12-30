@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="header" inherit_id="website.layout">
+        <xpath expr="//header//ul[@id='top_menu']/li" position="before">
+            <t t-set="partner" t-value="request.env.user.partner_id"/>
+            <t t-if="request.env.ref('base.public_partner').id != partner.id">
+                <li id="website_messages_dropdown" class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <span id="website_messages_menu">Messages</span>
+                        <span class="sr-only">Website messages</span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu"/>
+                </li>
+            </t>
+        </xpath>
+    </template>
+</odoo>
