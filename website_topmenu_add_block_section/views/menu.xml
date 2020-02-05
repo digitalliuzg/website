@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="website_topmenu_social_icons.menu_view" inherit_id="website.submenu">
+        <xpath expr="//li[2]" position="after">
+        </xpath>
+    </template>
+</odoo>
+
+

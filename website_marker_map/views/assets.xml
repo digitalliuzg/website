@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend" name="marker_map_assets" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <t
+                t-set="GMAPS_API_KEY"
+                t-value="request.env['res.config.settings'].sudo().search([('google_maps_api_key', '=like', '%')], limit=1).google_maps_api_key"/>
+            <t t-esc="GMAPS_API_KEY"/>
+            <script t-attf-src="https://maps.googleapis.com/maps/api/js?key={{ GMAPS_API_KEY }}">
+            </script>
+            <script src="/website_marker_map/static/src/js/map.js"></script>
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/website_marker_map/static/src/css/style.css"></link>
+        </xpath>
+
+    </template>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="marker_map_page" name="Marker Map Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty marker_map_wrap">
+                <section class="s_picture pt0 pb0 bg-white oe_custom_bg" style="">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed header-image-row mt-3 mb-3">
+                            <div class="pb0 col-lg-6">
+                                <div id="marker_map">
+                                    <p id="loading_text">Lataa...</p>
+                                </div>
+                            </div>
+                            <div id="map_ui" class="pb0 col-lg-6">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

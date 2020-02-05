@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <menuitem
+            id="menu_visitor_gallery"
+            name="Image Bankk"
+            parent="website.menu_website_configuration"
+            />
+
         <record id="visitor_image_form" model="ir.ui.view">
             <field name="name">visitor.image.form</field>
             <field name="model">visitor.image</field>
@@ -26,7 +32,36 @@
             <field name="res_model">visitor.image</field>
         </record>
 
-        <menuitem id="menu_visitor_gallery" parent="website.menu_website_configuration" name="Image Bank" sequence="10"
-            action="visitor_gallery_img_approval"/>
+        <menuitem
+            id="menu_visitor_gallery_img_approval"
+            name="Image Bank Images"
+            sequence="10"
+            action="visitor_gallery_img_approval"
+            parent="menu_visitor_gallery"
+            />
+
+        <record id="visitor_image_categories_list" model="ir.ui.view">
+            <field name="name">visitor.image.categories.list</field>
+            <field name="model">vimage.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="visitor_gallery_categories">
+            <field name="name">Image Bank Categories</field>
+            <field name="res_model">vimage.category</field>
+        </record>
+
+        <menuitem
+            id="menu_visitor_gallery_categories"
+            parent="menu_visitor_gallery"
+            name="Image Bank Categories"
+            sequence="11"
+            action="visitor_gallery_categories"
+            />
+
     </data>
 </odoo>

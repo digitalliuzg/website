@@ -2,8 +2,6 @@
     'name': "Website Visitor Gallery",
     'summary': """
 Allow website visitors to upload images to website visitor gallery.
-    """,
-    'description': """
 - Allow website visitors to upload pictures
 - Curate pictures before publishing
     """,

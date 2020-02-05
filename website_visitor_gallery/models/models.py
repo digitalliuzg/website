@@ -1,20 +1,27 @@
 from odoo import models, fields, api
 
+
 class VisitorImageCategory(models.Model):
     _name = 'vimage.category'
     name = fields.Char(string='Name')
+
 
 class WebsiteVisitorImage(models.Model):
     _name = 'visitor.image'
     _description = 'Image uploaded by website visitor'
 
     name = fields.Char(string="Name")
-    category = fields.Many2one(string="Category", comodel_name='vimage.category', ondelete='restrict')
-    website_published = fields.Boolean(string="Published on website", default=False)
+    category = fields.Many2one(string="Category",
+                               comodel_name='vimage.category',
+                               ondelete='restrict')
+    website_published = fields.Boolean(string="Published on website",
+                                       default=False)
     active = fields.Boolean(default=True)
     image_url = fields.Char(string="Image URL")
     filename = fields.Char(string="Filename")
-    attachment = fields.Many2one(string="Attachment Image", comodel_name="ir.attachment", ondelete="cascade")
+    attachment = fields.Many2one(string="Attachment Image",
+                                 comodel_name="ir.attachment",
+                                 ondelete="cascade")
     attachment_image = fields.Binary(related="attachment.datas")
 
     def get_category_list(self):
@@ -27,7 +34,8 @@ class WebsiteVisitorImage(models.Model):
         ret = []
         for category in self.env['vimage.category'].search([]):
             image_urls = [category.name]
-            for image in self.search([('category.id', '=', category.id), ('website_published', '=', True)]):
+            for image in self.search([('category.id', '=', category.id),
+                                      ('website_published', '=', True)]):
                 image_urls.append(image.image_url)
             ret.append(image_urls)
         return ret
