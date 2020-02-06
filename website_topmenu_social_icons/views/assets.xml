@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_topmenu_social_icons" name="topmenu_social_icons_assets" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/website_topmenu_social_icons/static/src/css/style.css"></link>
+        </xpath>
+    </template>
+</odoo>

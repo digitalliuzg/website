@@ -10,6 +10,7 @@
         'website',
     ],
     'data': [
+        'views/assets.xml',
         'views/menu.xml',
     ],
     'demo': [],
