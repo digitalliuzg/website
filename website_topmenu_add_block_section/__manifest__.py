@@ -9,6 +9,7 @@
     'version': '12.0.1.0.0',
     'depends': [
         'website',
+        'website_topmenu_social_icons',
     ],
     'data': [
         'views/menu.xml',
