@@ -3,7 +3,7 @@
     <template
         id="website_topmenu_social_icons.menu_view"
         inherit_id="website.layout">
-        <xpath expr="//ul[@id='top_menu']/*[1]" position="after">
+        <xpath expr="//ul[@id='top_menu']" position="after">
             <div id="topmenu-social-icons"
                 class="text-right" style="flex: 0 0 30%; height: 2rem;">
                 <t t-foreach="['facebook', 'github', 'googleplus', 'instagram',
