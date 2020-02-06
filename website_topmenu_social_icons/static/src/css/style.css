@@ -1,16 +1,17 @@
+@media (min-width: 769px) {
+    div#top_menu_collapse {
+        position: relative;
+    }
 
-div#top_menu_collapse {
-    position: relative;
-}
+    nav.navbar div.container {
+        margin-top: 3rem;
+    }
 
-nav.navbar div.container {
-    margin-top: 3rem;
-}
-
-div#topmenu-social-icons {
-    flex: 0 0 30%;
-    height: 2rem;
-    position: absolute;
-    top: -2.5rem;
-    right: 0;
+    div#topmenu-social-icons {
+        flex: 0 0 30%;
+        height: 2rem;
+        position: absolute;
+        top: -2.5rem;
+        right: 0;
+    }
 }
