@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="footer_three_columns" inherit_id="website.footer_custom">
+        <xpath expr="//footer" position="replace">
+            <footer class="bg-light o_footer">
+                <div id="footer" class="oe_structure oe_structure_solo">
+                    <section class="s_three_columns pt32 pb32 oe_custom_bg">
+                        <div class="container">
+                            <div class="row d-flex align-items-stretch">
+                                <div class="s_col_no_bgcolor pt16 pb16 col-lg-4">
+                                </div>
+                                <div class="s_col_no_bgcolor pt16 pb16 col-lg-4">
+                                </div>
+                                <div class="s_col_no_bgcolor pt16 pb16 col-lg-4">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </footer>
+        </xpath>
+    </template>
+</odoo>
