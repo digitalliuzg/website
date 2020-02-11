@@ -18,4 +18,10 @@
         top: -2.5rem;
         right: 0;
     }
+
+    div#topmenu-social-icons a,
+    div#topmenu-social-icons a:hover,
+    div#topmenu-social-icons a:visited {
+        text-decoration: none;
+    }
 }
