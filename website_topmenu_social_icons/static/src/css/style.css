@@ -3,6 +3,10 @@
         position: relative;
     }
 
+    div#top_menu_collapse_clone {
+        position: relative;
+    }
+
     nav.navbar div.container {
         margin-top: 3rem;
     }
