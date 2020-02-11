@@ -1,0 +1,9 @@
+div#footer {
+    position: relative;
+}
+
+div#footer-social-icons {
+    position: absolute;
+    top: 0;
+    right: 15%;
+}
