@@ -16,3 +16,9 @@
         text-align: center !important;
     }
 }
+
+div#footer-social-icons a,
+div#footer-social-icons a:hover,
+div#footer-social-icons a:visited {
+    text-decoration: none;
+}
