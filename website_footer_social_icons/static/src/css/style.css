@@ -1,9 +1,18 @@
-div#footer {
-    position: relative;
+@media (min-width: 769px) {
+    footer {
+        position: relative;
+    }
+
+    div#footer-social-icons {
+        position: absolute;
+        top: 0;
+        right: 15%;
+    }
 }
 
-div#footer-social-icons {
-    position: absolute;
-    top: 0;
-    right: 15%;
+@media (max-width: 769px) {
+    div#footer-social-icons {
+        width: 100%;
+        text-align: center !important;
+    }
 }

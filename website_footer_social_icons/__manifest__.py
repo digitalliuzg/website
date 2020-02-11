@@ -11,7 +11,7 @@
     ],
     'data': [
         'views/assets.xml',
-        'views/menu.xml',
+        'views/footer.xml',
     ],
     'demo': [],
 }

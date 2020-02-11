@@ -3,7 +3,7 @@
     <template
         id="website_footer_social_icons.menu_view"
         inherit_id="website.layout">
-        <xpath expr="//div[@id='footer']" position="inside">
+        <xpath expr="//div[@id='footer']" position="after">
             <div id="footer-social-icons"
                 class="text-right" style="height: 2rem;">
                 <t t-foreach="['youtube', 'twitter', 'linkedin', 'instagram',
