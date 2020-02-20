@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_anchor_menu_close" name="website_anchor_menu_close_assets" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/website_anchor_menu_close/static/src/js/menu_close.js"></script>
+        </xpath>
+    </template>
+</odoo>
