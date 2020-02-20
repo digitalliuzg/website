@@ -1,6 +1,7 @@
-@media (min-width: 769px) {
+@media (min-width: 991px) {
     footer {
         position: relative;
+        padding-top: 1rem;
     }
 
     div#footer-social-icons {
@@ -10,10 +11,11 @@
     }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 991px) {
     div#footer-social-icons {
         width: 100%;
         text-align: center !important;
+        margin-bottom: 16px;
     }
 }
 

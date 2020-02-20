@@ -5,7 +5,7 @@
         inherit_id="website.layout">
         <xpath expr="//div[@id='footer']" position="after">
             <div id="footer-social-icons"
-                class="text-right" style="height: 2rem;">
+                class="text-right pb-2" style="height: 2rem;">
                 <t t-foreach="['youtube', 'twitter', 'linkedin', 'instagram',
                     'googleplus', 'github', 'facebook']"
                     t-as="item">
@@ -19,5 +19,3 @@
         </xpath>
     </template>
 </odoo>
-
-
