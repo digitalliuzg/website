@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<template id="signup_view"
+          inherit_id="auth_signup.fields"
+          customize_show="True">
+
+    <xpath expr="//span[@id='legal_terms_msg']//a[@href='/legal/advice']" position="replace">
+        <a type="button" class="" data-toggle="modal" data-target="#signup-popup-advice">legal advice</a>, the 
+    </xpath>
+
+    <xpath expr="//span[@id='legal_terms_msg']//a[@href='/legal/privacy-policy']" position="replace">
+        <a type="button" class="" data-toggle="modal" data-target="#signup-popup-privacy">privacy policy </a>and the
+    </xpath>
+
+    <xpath expr="//div[last()]" position="after">
+    </xpath>
+
+    <xpath expr="//span[@id='legal_terms_msg']//a[@href='/legal/terms-of-use']" position="replace">
+        <a type="button" class="" data-toggle="modal" data-target="#signup-popup-terms">terms of use </a>of this website.
+    </xpath>
+
+    <xpath expr="//div[last()]" position="after">
+        <div class="modal fade" id="signup-popup-advice" tabindex="-1" role="dialog" aria-labelledby="signup-popup-advice-title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div- class="modal-header">
+                        <button type="button" name="signup_popup_button_advice" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-icon">
+                                <p class="fa fa-times"></p>
+                            </div>
+                        </button>
+                    </div->
+                    <div id="print-advice" class="modal-body">
+                        <t t-call="website_legal_page.advice">
+                        </t>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="signup-pop-print-advice btn-link pull-left" title="Print">
+                            <i class="fa fa-print"/>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="signup-popup-privacy" tabindex="-1" role="dialog" aria-labelledby="signup-popup-privacy-title" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div- class="modal-header">
+                        <button type="button" name="signup_popup_button_privacy" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-icon">
+                                <p class="fa fa-times"></p>
+                            </div>
+                        </button>
+                    </div->
+                    <div id="print-privacy" class="modal-body">
+                        <t t-call="website_legal_page.privacy-policy">
+                        </t>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="signup-pop-print-privacy btn-link pull-left" title="Print">
+                            <i class="fa fa-print"/>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="signup-popup-terms" tabindex="-1" role="dialog" aria-labelledby="signup-popup-terms-title" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div- class="modal-header">
+                        <button type="button" name="signup_popup_button_terms" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-icon">
+                                <p class="fa fa-times"></p>
+                            </div>
+                        </button>
+                    </div->
+                    <div id="print-terms" class="modal-body">
+                        <t t-call="website_legal_page.terms-of-use">
+                        </t>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="signup-pop-print-terms btn-link pull-left" title="Print">
+                            <i class="fa fa-print"/>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.min.js"></script>
+        <script type="text/javascript" src="/website_signup_legal_page_popup/static/src/js/popup.js?v102"></script>
+    </xpath>
+
+</template>
+<template id="assets_skills" name="Skills 2.0" inherit_id="website.assets_frontend" active="True" priority="1">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/less" href='/website_signup_legal_page_popup/static/src/less/signup.less'/>
+        </xpath>
+</template>
+
+</odoo>
