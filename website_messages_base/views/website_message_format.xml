@@ -17,7 +17,7 @@
         res_model="website.message.format"
         view_mode="tree"
         limit="80" />
-    
+
     <menuitem
         id="menu_website_message_format"
         name="Website message formats"

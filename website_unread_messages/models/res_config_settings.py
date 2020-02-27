@@ -17,14 +17,15 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 # 1. Standard library imports:
 import logging
 
-# 2. Known third party imports:
+from odoo import api
+from odoo import fields
+from odoo import models
 
+# 2. Known third party imports:
 # 3. Odoo imports (openerp):
-from odoo import api, models, fields
 
 # 4. Imports from Odoo modules:
 
@@ -38,7 +39,7 @@ _logger = logging.getLogger(__name__)
 class ResConfigSettings(models.TransientModel):
 
     # 1. Private attributes
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     # 2. Fields declaration
     unread_messages_notifications = fields.Boolean(
@@ -46,8 +47,7 @@ class ResConfigSettings(models.TransientModel):
         help="Enable unread messages' notifications on website",
     )
     unread_messages_page = fields.Boolean(
-        string="Unread messages' page",
-        help="Enable unread messages' page on website",
+        string="Unread messages' page", help="Enable unread messages' page on website",
     )
 
     # 3. Default methods
@@ -60,26 +60,29 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        notifications = self.env['ir.config_parameter'].sudo().get_param(
-            'website_unread_messages.notifications', False
+        notifications = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("website_unread_messages.notifications", False)
         )
-        page = self.env['ir.config_parameter'].sudo().get_param(
-            'website_unread_messages.page', False
+        page = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("website_unread_messages.page", False)
         )
         res.update(
-            unread_messages_notifications=notifications,
-            unread_messages_page=page,
+            unread_messages_notifications=notifications, unread_messages_page=page,
         )
         return res
 
     @api.multi
     def set_values(self):
         super(ResConfigSettings, self).set_values()
-        self.env['ir.config_parameter'].sudo().set_param(
-            'website_unread_messages.notifications', self.unread_messages_notifications
+        self.env["ir.config_parameter"].sudo().set_param(
+            "website_unread_messages.notifications", self.unread_messages_notifications
         )
-        self.env['ir.config_parameter'].sudo().set_param(
-            'website_unread_messages.page', self.unread_messages_page
+        self.env["ir.config_parameter"].sudo().set_param(
+            "website_unread_messages.page", self.unread_messages_page
         )
 
     # 7. Action methods

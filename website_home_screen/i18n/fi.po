@@ -29,4 +29,3 @@ msgstr "Kirjaudu sisään ylävalikosta tai painamalla "
 #: model:ir.ui.view,arch_db:website_home_screen.homepage_inherited
 msgid "here."
 msgstr "tästä."
-

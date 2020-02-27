@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_visitor_img_upload_image,access_visitor_image_upload,model_visitor_image,,1,1,1,1
 access_visitor_img_category,access_visitor_image_upload,model_vimage_category,,1,1,1,1
-

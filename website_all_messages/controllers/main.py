@@ -17,12 +17,8 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
-
 # 1. Standard library imports:
-
 # 2. Known third party imports:
-
 # 3. Odoo imports (openerp):
 from odoo import http
 from odoo.http import request
@@ -35,14 +31,13 @@ from odoo.http import request
 
 
 class WebsiteAllMessagesController(http.Controller):
-
     @http.route(
-        ['/all_messages', '/all_messages/page/<int:page>'],
-        type='http',
-        auth='user',
+        ["/all_messages", "/all_messages/page/<int:page>"],
+        type="http",
+        auth="user",
         website=True,
     )
-    def all_messages(self, search='', page=1, **post):
+    def all_messages(self, search="", page=1, **post):
         """
         Route to show list of all portal messages.
 
@@ -52,22 +47,25 @@ class WebsiteAllMessagesController(http.Controller):
         :return: rendered object
         """
         partner_id = request.env.user.partner_id.id
-        message_model = request.env['mail.message']
-        page_enabled = request.env['ir.config_parameter'].sudo().get_param(
-            'website_all_messages.page')
+        message_model = request.env["mail.message"]
+        page_enabled = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("website_all_messages.page")
+        )
 
         if not page_enabled or not partner_id:
             # Hide page if it's not enabled
-            return request.render('website.404')
+            return request.render("website.404")
 
         # Recordset of read messages
         domain = [
-            ('website_published', '=', True),
-            ('needaction_partner_ids', '=', partner_id),
-            ('website_url', '!=', False),
-            '|',
-            ('author_id', 'ilike', search),
-            ('record_name', 'ilike', search),
+            ("website_published", "=", True),
+            ("needaction_partner_ids", "=", partner_id),
+            ("website_url", "!=", False),
+            "|",
+            ("author_id", "ilike", search),
+            ("record_name", "ilike", search),
         ]
 
         messages_count = message_model.search_count(domain)
@@ -80,29 +78,24 @@ class WebsiteAllMessagesController(http.Controller):
             page=page,
             step=pager_limit,
             scope=7,
-            url_args=post
+            url_args=post,
         )
         messages = message_model.sudo().search(
-            domain,
-            order="id DESC",
-            limit=pager_limit,
-            offset=pager['offset']
+            domain, order="id DESC", limit=pager_limit, offset=pager["offset"]
         )
         search_url = request.httprequest.path + ("?%s" % search)
 
         message_start = abs(50 - page * pager_limit) + 1
-        message_end = total_count if total_count < page * pager_limit \
-            else page * pager_limit
+        message_end = (
+            total_count if total_count < page * pager_limit else page * pager_limit
+        )
         visible = "{} - {} / {}".format(message_start, message_end, total_count)
 
         values = {
-            'messages': messages,
-            'pager': pager,
-            'visible_messages': visible,
-            'search_url': search_url,
-            'current_search': search,
+            "messages": messages,
+            "pager": pager,
+            "visible_messages": visible,
+            "search_url": search_url,
+            "current_search": search,
         }
-        return request.render(
-            'website_all_messages.all_messages',
-            values
-        )
+        return request.render("website_all_messages.all_messages", values)

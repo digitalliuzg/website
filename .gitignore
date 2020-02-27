@@ -1,2 +1,4 @@
 *.pyc
-
+.pre-commit-config.yaml
+.gitignore
+.eslintrc.yml

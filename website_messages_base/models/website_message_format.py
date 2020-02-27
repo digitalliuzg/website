@@ -17,13 +17,12 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 # 1. Standard library imports:
-
 # 2. Known third party imports:
-
 # 3. Odoo imports:
-from odoo import fields, models, _
+from odoo import _
+from odoo import fields
+from odoo import models
 
 # 4. Imports from Odoo modules:
 
@@ -35,23 +34,22 @@ from odoo import fields, models, _
 class WebsiteMessageFormat(models.Model):
 
     # 1. Private attributes
-    _name = 'website.message.format'
-    _description = 'Website messages'
+    _name = "website.message.format"
+    _description = "Website messages"
     _sql_constraints = [
-        ('res_model', 'unique(res_model)',
-         _('This model already has a format.'))
+        ("res_model", "unique(res_model)", _("This model already has a format."))
     ]
 
     # 2. Fields declaration
     res_model = fields.Many2one(
-        'ir.model',
-        string='Resources model',
-        help='For what model the format is valid',
+        "ir.model",
+        string="Resources model",
+        help="For what model the format is valid",
         required=True,
     )
     url_format = fields.Char(
-        string='URL format of the model',
-        help='This field defines the URL format for model',
+        string="URL format of the model",
+        help="This field defines the URL format for model",
         required=True,
     )
 

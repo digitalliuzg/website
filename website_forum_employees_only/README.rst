@@ -16,7 +16,7 @@ Usage
 =====
 * Just install the module. This deactivates the core access rules that allow
   public and portal users to access the forum.
-* The module is "upgrade-proof", i.e. upgrading all modules still maintains 
+* The module is "upgrade-proof", i.e. upgrading all modules still maintains
   the access rights and keeps the forum private
 
 Known issues / Roadmap

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="user_navbar" name="Website Developer Admin" inherit_id="website.user_navbar">
+        <xpath expr="//li[@id='customize-menu']" position="attributes">
+            <attribute name="groups">website_developer_group.group_website_developer_admin</attribute>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
     <odoo>
         <template id="website_cookie_notice_extension.privacy_policy" name="website_cookie_notice_extension.privacy_policy">
-            <t t-call="website.layout"> 
+            <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure"/>
                     <div class="container mt16 mb8">
@@ -62,7 +62,7 @@
                                 <h4>10. STORAGE TIME</h4>
                                 <p>The data in the register is removed when the purpose for their usage has ended, unless the otherwise goverend by the current law.</p>
                             </div>
-                            
+
                             <div class="principles-of-protection">
                                 <h4>11. THE GENERAL PRINCIPLES OF PROTECTING THE REGISTRY </h4>
                                 <p>Only the employees whose job description entitles them to handle customer data have the right to access to the customer registry. Each user has their own user ID and password for the system.</p>

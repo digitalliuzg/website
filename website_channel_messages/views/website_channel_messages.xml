@@ -204,8 +204,8 @@
                     <div class="col-6 pr-0">
                         <button type="button" class="file-upload btn btn-primary btn-block btn-lg rounded-0">
                             <span><i class="fa fa-camera"></i></span>
-                            <input type="file" class="upload" id="image" name="image" 
-                                accept="image/*" capture="camera" 
+                            <input type="file" class="upload" id="image" name="image"
+                                accept="image/*" capture="camera"
                                 t-att-data-maxwidth="maxwidth" t-att-data-maxheight="maxheight"/>
                         </button>
                     </div>

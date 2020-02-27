@@ -17,13 +17,11 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 # 1. Standard library imports:
-
 # 2. Known third party imports:
-
 # 3. Odoo imports:
-from odoo import api, models
+from odoo import api
+from odoo import models
 
 # 4. Imports from Odoo modules:
 
@@ -35,7 +33,7 @@ from odoo import api, models
 class MailThread(models.AbstractModel):
 
     # 1. Private attributes
-    _inherit = 'mail.thread'
+    _inherit = "mail.thread"
 
     # 2. Fields declaration
 
@@ -59,17 +57,23 @@ class MailThread(models.AbstractModel):
         """
         partner_id = self.env.user.partner_id.id
         domain = [
-            ('model', '=', self._name),
-            ('res_id', 'in', self.ids),
-            ('website_published', '=', True),
-            ('notification_ids.res_partner_id', '=', partner_id),
-            ('notification_ids.is_read', '=', False),
+            ("model", "=", self._name),
+            ("res_id", "in", self.ids),
+            ("website_published", "=", True),
+            ("notification_ids.res_partner_id", "=", partner_id),
+            ("notification_ids.is_read", "=", False),
         ]
-        messages = self.env['mail.message'].sudo().search(domain)
-        notifications = self.env['mail.notification'].sudo().search([
-            ('mail_message_id', 'in', messages.ids),
-            ('res_partner_id', '=', partner_id),
-            ('is_read', '=', False),
-        ])
-        notifications.write({'is_read': True})
+        messages = self.env["mail.message"].sudo().search(domain)
+        notifications = (
+            self.env["mail.notification"]
+            .sudo()
+            .search(
+                [
+                    ("mail_message_id", "in", messages.ids),
+                    ("res_partner_id", "=", partner_id),
+                    ("is_read", "=", False),
+                ]
+            )
+        )
+        notifications.write({"is_read": True})
         return messages.ids

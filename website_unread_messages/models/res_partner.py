@@ -17,14 +17,14 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 # 1. Standard library imports:
 import logging
 
-# 2. Known third party imports:
+from odoo import api
+from odoo import models
 
+# 2. Known third party imports:
 # 3. Odoo imports:
-from odoo import api, models
 
 # 4. Imports from Odoo modules:
 
@@ -39,7 +39,7 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
 
     # 1. Private attributes
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     # 2. Fields declaration
 
@@ -56,12 +56,13 @@ class ResPartner(models.Model):
         2) Find messages that have one of these models
         """
         if self.env.user.partner_id:
-            enabled_models = self.env['website.message.format'].search([])
+            enabled_models = self.env["website.message.format"].search([])
             model_list = list()
             for rec in enabled_models:
                 model_list.append(rec.res_model.model)
 
-            self.env.cr.execute("""
+            self.env.cr.execute(
+                """
                 SELECT count(*) as needaction_count
                 FROM mail_message_res_partner_needaction_rel
                 R RIGHT JOIN mail_message
@@ -70,10 +71,10 @@ class ResPartner(models.Model):
                 AND M.model IN %s
                 AND M.website_published = true
                 AND (R.is_read = false OR R.is_read IS NULL)""",
-                                (self.env.user.partner_id.id,
-                                 tuple(model_list)))
-            return (self.env.cr.dictfetchall()[0].get('needaction_count'))
-        _logger.error('Call to needaction_count without partner_id')
+                (self.env.user.partner_id.id, tuple(model_list)),
+            )
+            return self.env.cr.dictfetchall()[0].get("needaction_count")
+        _logger.error("Call to needaction_count without partner_id")
         return 0
 
     # 5. Constraints and onchanges

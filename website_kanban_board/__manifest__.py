@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
+#    Author: Tawasta
 #    Copyright 2016 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,19 +19,15 @@
 ##############################################################################
 
 {
-    'name': 'Website Kanban Board',
-    'summary': 'Website Kanban Board',
-    'version': '12.0.1.0.1',
-    'category': 'Website',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd.',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': [
-        'portal',
-    ],
-    'data': [
-        'views/kanban_board.xml',
-    ],
+    "name": "Website Kanban Board",
+    "summary": "Website Kanban Board",
+    "version": "12.0.1.0.1",
+    "category": "Website",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "depends": ["portal"],
+    "data": ["views/kanban_board.xml"],
 }

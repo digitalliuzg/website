@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
+#    Author: Tawasta
 #    Copyright 2016 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,25 +19,17 @@
 ##############################################################################
 
 {
-    'name': 'Website home screen',
-    'summary': 'Website home screen',
-    'version': '12.0.1.0.0',
-    'category': 'Project',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd.',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': False,
-    'external_dependencies': {
-        'python': [],
-        'bin': [],
-    },
-    'depends': [
-        'website'
-    ],
-    'data': [
-        'views/website_home.xml',
-    ],
-    'demo': [
-    ],
+    "name": "Website home screen",
+    "summary": "Website home screen",
+    "version": "12.0.1.0.0",
+    "category": "Project",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": False,
+    "external_dependencies": {"python": [], "bin": []},
+    "depends": ["website"],
+    "data": ["views/website_home.xml"],
+    "demo": [],
 }

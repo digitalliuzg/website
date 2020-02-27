@@ -19,20 +19,15 @@
 ##############################################################################
 
 {
-    'name': 'Website header language selector',
-    'summary': 'Language selector for website header',
-    'version': '12.0.1.0.0',
-    'category': 'Website',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd.',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': [
-        'website',
-    ],
-    'data': [
-        'views/website_footer.xml',
-        'views/website_header.xml',
-    ],
+    "name": "Website header language selector",
+    "summary": "Language selector for website header",
+    "version": "12.0.1.0.0",
+    "category": "Website",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "depends": ["website"],
+    "data": ["views/website_footer.xml", "views/website_header.xml"],
 }

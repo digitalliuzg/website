@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
+#    Author: Tawasta
 #    Copyright 2019- Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,21 +19,19 @@
 ##############################################################################
 
 {
-    'name': 'Website All Messages',
-    'summary': 'All messages for website',
-    'version': '12.0.2.0.0',
-    'category': 'Website',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd.',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': [
-        'website_messages_base',
-    ],
-    'data': [
-        'data/website_all_messages_data.xml',
-        'views/res_config_settings_views.xml',
-        'views/website_all_messages.xml',
+    "name": "Website All Messages",
+    "summary": "All messages for website",
+    "version": "12.0.2.0.0",
+    "category": "Website",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "depends": ["website_messages_base"],
+    "data": [
+        "data/website_all_messages_data.xml",
+        "views/res_config_settings_views.xml",
+        "views/website_all_messages.xml",
     ],
 }

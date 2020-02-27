@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
+#    Author: Tawasta
 #    Copyright 2018 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,25 +18,17 @@
 #
 ##############################################################################
 {
-    'name': 'Partner details in partner page',
-    'summary': 'Partner details in partner page',
-    'version': '12.0.1.0.0',
-    'category': 'Website',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': False,
-    'external_dependencies': {
-        'python': [],
-        'bin': [],
-    },
-    'depends': [
-        'website_partner',
-    ],
-    'data': [
-        'views/website_partner.xml',
-    ],
-    'demo': [
-    ],
+    "name": "Partner details in partner page",
+    "summary": "Partner details in partner page",
+    "version": "12.0.1.0.0",
+    "category": "Website",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": False,
+    "external_dependencies": {"python": [], "bin": []},
+    "depends": ["website_partner"],
+    "data": ["views/website_partner.xml"],
+    "demo": [],
 }

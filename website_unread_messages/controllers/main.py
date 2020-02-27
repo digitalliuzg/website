@@ -17,18 +17,17 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
-
 # 1. Standard library imports:
-from datetime import datetime
 import json
 import time
+from datetime import datetime
+
+from odoo import _
+from odoo import http
+from odoo.http import request
 
 # 2. Known third party imports:
-
 # 3. Odoo imports (openerp):
-from odoo import _, http
-from odoo.http import request
 
 # 4. Imports from Odoo modules (rarely, and only if necessary):
 
@@ -38,13 +37,8 @@ from odoo.http import request
 
 
 class WebsiteUnreadMessagesController(http.Controller):
-
     @http.route(
-        ['/new_messages'],
-        type='json',
-        auth='user',
-        website=True,
-        csrf=False,
+        ["/new_messages"], type="json", auth="user", website=True, csrf=False,
     )
     def new_messages(self, **post):
         """
@@ -63,17 +57,22 @@ class WebsiteUnreadMessagesController(http.Controller):
         """
         current_user = request.env.user
         partner = current_user.partner_id
-        timestamp = request.session.get('messages_checked')
+        timestamp = request.session.get("messages_checked")
         no_messages = _("There aren't any new messages!")
         msg = ""
-        is_enabled = request.env['ir.config_parameter'].sudo().get_param(
-            'website_unread_messages.notifications')
+        is_enabled = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("website_unread_messages.notifications")
+        )
         if is_enabled:
-            page_enabled = request.env['ir.config_parameter'].sudo().get_param(
-                'website_unread_messages.page')
+            page_enabled = (
+                request.env["ir.config_parameter"]
+                .sudo()
+                .get_param("website_unread_messages.page")
+            )
             # Count unread portal messages
-            message_count = partner.sudo(current_user)\
-                .get_portal_needaction_count()
+            message_count = partner.sudo(current_user).get_portal_needaction_count()
 
             if timestamp:
                 # Last new messages retrieved at timestamp
@@ -87,7 +86,7 @@ class WebsiteUnreadMessagesController(http.Controller):
                     return False
                 elif message_count == 0:
                     # State changed to 'all messages are read'
-                    request.session['messages_checked'] = None
+                    request.session["messages_checked"] = None
             else:
                 if message_count == 0:
                     # No timestamp == no messages, so state didn't change
@@ -95,7 +94,7 @@ class WebsiteUnreadMessagesController(http.Controller):
 
             if message_count != 0:
                 # Save timestamp to prevent spam
-                request.session['messages_checked'] = time.time()
+                request.session["messages_checked"] = time.time()
                 msg = _("You have ")
 
                 if message_count > 1:
@@ -104,47 +103,50 @@ class WebsiteUnreadMessagesController(http.Controller):
                     msg += _("a new message in discussions!")
                 if page_enabled:
                     # If unread messages page is enabled (system parameters)
-                    msg = "<a href='%s'>%s</a>" % ('/unread_messages', msg)
+                    msg = "<a href='%s'>%s</a>" % ("/unread_messages", msg)
 
-        notification_class = 'info' if msg else 'success'
+        notification_class = "info" if msg else "success"
         values = {
-            'msg': msg if msg else no_messages,
-            'notification_class': notification_class,
-            'is_enabled': is_enabled,
+            "msg": msg if msg else no_messages,
+            "notification_class": notification_class,
+            "is_enabled": is_enabled,
         }
         return json.dumps(values)
 
     @http.route(
-        ['/unread_messages', '/unread_messages/page/<int:page>'],
-        type='http',
-        auth='user',
+        ["/unread_messages", "/unread_messages/page/<int:page>"],
+        type="http",
+        auth="user",
         website=True,
     )
-    def unread_messages(self, search='', page=1, **post):
+    def unread_messages(self, search="", page=1, **post):
         """ Route to show list of unread messages """
         partner_id = request.env.user.partner_id.id
-        message_model = request.env['mail.message']
-        page_enabled = request.env['ir.config_parameter'].sudo().get_param(
-            'website_unread_messages.page')
+        message_model = request.env["mail.message"]
+        page_enabled = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("website_unread_messages.page")
+        )
 
         if not page_enabled or not partner_id:
             # Hide page if it's not enabled
-            return request.render('website.404')
+            return request.render("website.404")
 
         # Recordset of unread messages
         domain = [
-            ('website_published', '=', True),
-            ('needaction_partner_ids', '=', partner_id),
-            ('website_url', '!=', False),
-            '|',
-            ('author_id', 'ilike', search),
-            ('record_name', 'ilike', search),
-            '&',
-            ('notification_ids.res_partner_id', '=', partner_id),
-            ('notification_ids.is_read', '=', False),
+            ("website_published", "=", True),
+            ("needaction_partner_ids", "=", partner_id),
+            ("website_url", "!=", False),
+            "|",
+            ("author_id", "ilike", search),
+            ("record_name", "ilike", search),
+            "&",
+            ("notification_ids.res_partner_id", "=", partner_id),
+            ("notification_ids.is_read", "=", False),
         ]
         messages_count = message_model.search_count(domain)
-        url = '/unread_messages'
+        url = "/unread_messages"
         total_count = messages_count
         pager_limit = 50
         pager = request.website.pager(
@@ -153,29 +155,24 @@ class WebsiteUnreadMessagesController(http.Controller):
             page=page,
             step=pager_limit,
             scope=7,
-            url_args=post
+            url_args=post,
         )
         messages = message_model.sudo().search(
-            domain,
-            order="id DESC",
-            limit=pager_limit,
-            offset=pager['offset']
+            domain, order="id DESC", limit=pager_limit, offset=pager["offset"]
         )
-        search_url = ('/unread_messages?%s' % (search))
+        search_url = "/unread_messages?%s" % (search)
 
         message_start = abs(50 - page * pager_limit) + 1
-        message_end = total_count if total_count < page * pager_limit \
-            else page * pager_limit
+        message_end = (
+            total_count if total_count < page * pager_limit else page * pager_limit
+        )
         visible = "{} - {} / {}".format(message_start, message_end, total_count)
 
         values = {
-            'messages': messages,
-            'pager': pager,
-            'visible_messages': visible,
-            'search_url': search_url,
-            'current_search': search,
+            "messages": messages,
+            "pager": pager,
+            "visible_messages": visible,
+            "search_url": search_url,
+            "current_search": search,
         }
-        return request.render(
-            'website_unread_messages.unread_messages',
-            values
-        )
+        return request.render("website_unread_messages.unread_messages", values)

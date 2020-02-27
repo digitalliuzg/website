@@ -229,4 +229,3 @@ msgstr "muista vastaavista yksityisistä ja julkisista rekistereistä"
 #: model:ir.ui.view,arch_db:website_cookie_notice_extension.privacy_policy
 msgid "through internet, e-mail or other similar means"
 msgstr "internetin kautta, sähköpostilla tai muulla vastaavalla tavalla,"
-

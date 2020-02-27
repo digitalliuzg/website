@@ -56,7 +56,7 @@ odoo.define("website_channel_messages.submission", function (require) {
         loadingScreen();
         var reader = new FileReader();
         reader.readAsArrayBuffer(file);
-        
+
         reader.onload = function (event) {
             var blob = new Blob([event.target.result]);
             window.URL = window.URL || window.webkitURL;

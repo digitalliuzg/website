@@ -17,22 +17,20 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
-
 # 1. Standard library imports:
-import os
-from PIL import Image
-from io import BytesIO
 import base64
 import logging
+import os
 from datetime import datetime
+from io import BytesIO
 
-# 2. Known third party imports:
-
-# 3. Odoo imports (openerp):
 from odoo import http
 from odoo.http import request
 from odoo.tools import image_save_for_web
+from PIL import Image
+
+# 2. Known third party imports:
+# 3. Odoo imports (openerp):
 
 # 4. Imports from Odoo modules (rarely, and only if necessary):
 
@@ -93,8 +91,9 @@ def process_file(file):
     file.seek(0)
     if file_size > MAX_SIZE * 1024 * 1024:
         too_big = True
-        _logger.warning("Attachment filesize too big: %d MB" %
-                        (file_size / 1024 / 1024))
+        _logger.warning(
+            "Attachment filesize too big: %d MB" % (file_size / 1024 / 1024)
+        )
     return too_big
 
 
@@ -122,8 +121,9 @@ def process_message(user, record, data):
                 image_data = image.read()
             resized = compress_image(image_data)
             mimetype = data.get("image").mimetype
-            filename = data.get(
-                "image").filename if "png" not in mimetype else "image.jpg"
+            filename = (
+                data.get("image").filename if "png" not in mimetype else "image.jpg"
+            )
             attachment_list.append((filename, resized))
         if file:
             too_big = process_file(file)
@@ -133,7 +133,8 @@ def process_message(user, record, data):
             attachment_list.append((file.filename, file_data))
         if not error:
             notified_partner_ids = record.channel_last_seen_partner_ids.mapped(
-                "partner_id").ids
+                "partner_id"
+            ).ids
             record.sudo().message_post(
                 author_id=user.partner_id.id,
                 body=comment,
@@ -145,7 +146,6 @@ def process_message(user, record, data):
 
 
 class WebsiteChannelMessagesController(http.Controller):
-
     @http.route(
         ["/website_channel", "/website_channel/page/<int:page>"],
         type="http",
@@ -184,23 +184,27 @@ class WebsiteChannelMessagesController(http.Controller):
             page=page,
             step=pager_limit,
             scope=7,
-            url_args=post
+            url_args=post,
         )
-        channels = channel_model.sudo().search(
-            domain,
-            limit=pager_limit,
-            offset=pager["offset"]
-        ).sorted(key=lambda r: r.channel_message_ids.ids, reverse=True)
+        channels = (
+            channel_model.sudo()
+            .search(domain, limit=pager_limit, offset=pager["offset"])
+            .sorted(key=lambda r: r.channel_message_ids.ids, reverse=True)
+        )
 
         search_url = request.httprequest.path + ("?%s" % search)
         message_start = abs(50 - page * pager_limit) + 1
-        message_end = total_count if total_count < page * pager_limit \
-            else page * pager_limit
+        message_end = (
+            total_count if total_count < page * pager_limit else page * pager_limit
+        )
         visible = "{} - {} / {}".format(message_start, message_end, total_count)
 
-        partners = request.env["res.users"].sudo().search([
-            ('partner_id', '!=', partner_id)
-        ]).mapped('partner_id')
+        partners = (
+            request.env["res.users"]
+            .sudo()
+            .search([("partner_id", "!=", partner_id)])
+            .mapped("partner_id")
+        )
         values = {
             "channels": channels,
             "pager": pager,
@@ -209,16 +213,10 @@ class WebsiteChannelMessagesController(http.Controller):
             "current_search": search,
             "partners": partners,
         }
-        return request.render(
-            "website_channel_messages.my_channels",
-            values
-        )
+        return request.render("website_channel_messages.my_channels", values)
 
     @http.route(
-        ["/website_channel/<int:channel_id>"],
-        type="http",
-        auth="user",
-        website=True,
+        ["/website_channel/<int:channel_id>"], type="http", auth="user", website=True,
     )
     def channel_messages(self, channel_id=None, **post):
         """
@@ -229,11 +227,17 @@ class WebsiteChannelMessagesController(http.Controller):
         :return: rendered object
         """
         user = request.env.user
-        channel = request.env["mail.channel"].sudo().search([
-            ("id", "=", channel_id),
-            ("public", "=", "private"),
-            ("channel_partner_ids", "in", [user.partner_id.id]),
-        ])
+        channel = (
+            request.env["mail.channel"]
+            .sudo()
+            .search(
+                [
+                    ("id", "=", channel_id),
+                    ("public", "=", "private"),
+                    ("channel_partner_ids", "in", [user.partner_id.id]),
+                ]
+            )
+        )
 
         if not channel:
             return request.render("website.404")
@@ -246,17 +250,14 @@ class WebsiteChannelMessagesController(http.Controller):
             "maxwidth": 1080,
             "maxheight": 1080,
         }
-        return request.render(
-            "website_channel_messages.channel",
-            values
-        )
+        return request.render("website_channel_messages.channel", values)
 
     @http.route(
         ["/website_channel/<int:channel_id>/message"],
         type="http",
         auth="user",
         website=True,
-        methods=["POST"]
+        methods=["POST"],
     )
     def channel_send_message(self, channel_id=None, **post):
         """
@@ -266,10 +267,17 @@ class WebsiteChannelMessagesController(http.Controller):
         :param post: submitted form payload
         """
         user = request.env.user
-        channel = request.env["mail.channel"].sudo().search([
-            ("id", "=", channel_id),
-            ("channel_partner_ids", "in", [user.partner_id.id]),
-        ], limit=1)
+        channel = (
+            request.env["mail.channel"]
+            .sudo()
+            .search(
+                [
+                    ("id", "=", channel_id),
+                    ("channel_partner_ids", "in", [user.partner_id.id]),
+                ],
+                limit=1,
+            )
+        )
         if not channel:
             return request.render("website.404")
 
@@ -279,9 +287,7 @@ class WebsiteChannelMessagesController(http.Controller):
         return request.redirect(redirect_url)
 
     @http.route(
-        ["/website_channel/update_messages"],
-        type="json",
-        auth="user",
+        ["/website_channel/update_messages"], type="json", auth="user",
     )
     def channel_update_messages(self, channel_id, timestamp, csrf_token):
         """
@@ -291,32 +297,35 @@ class WebsiteChannelMessagesController(http.Controller):
         :param timestamp: timestamp of previous update
         :return: new messages rendered HTML
         """
-        channel = request.env["mail.channel"].sudo().search([
-            ('id', '=', channel_id)
-        ], limit=1)
+        channel = (
+            request.env["mail.channel"]
+            .sudo()
+            .search([("id", "=", channel_id)], limit=1)
+        )
         messages_html = ""
         if channel:
-            timestamp = str(timestamp).split('.')[0]
+            timestamp = str(timestamp).split(".")[0]
             timestamp_date = str(datetime.fromtimestamp(int(timestamp)))
-            new_messages = request.env['mail.message'].search([
-                ('model', '=', 'mail.channel'),
-                ('res_id', '=', channel.id),
-                ('date', '>', timestamp_date)
-            ])
+            new_messages = request.env["mail.message"].search(
+                [
+                    ("model", "=", "mail.channel"),
+                    ("res_id", "=", channel.id),
+                    ("date", ">", timestamp_date),
+                ]
+            )
             if new_messages:
                 for message in new_messages:
-                    render_values = {
-                        "message": message
-                    }
-                    messages_html += request.env["ir.ui.view"].render_template(
-                        "website_channel_messages.single_message",
-                        render_values,
-                    ).decode('UTF-8')
+                    render_values = {"message": message}
+                    messages_html += (
+                        request.env["ir.ui.view"]
+                        .render_template(
+                            "website_channel_messages.single_message", render_values,
+                        )
+                        .decode("UTF-8")
+                    )
         return messages_html
 
-    @http.route([
-        "/website_channel/create",
-    ], type="json", auth="user")
+    @http.route(["/website_channel/create"], type="json", auth="user")
     def channel_create(self, recipients, csrf_token):
         """
         Create new channel if no chat exists for the selected recipients.
@@ -330,20 +339,38 @@ class WebsiteChannelMessagesController(http.Controller):
         recipients.append(current_user.partner_id.id)
         recipients.sort()
 
-        channel = MailChannel.sudo().search([
-            ("channel_type", "=", "chat"),
-            ("channel_partner_ids", "in", recipients),
-        ]).filtered(lambda r: sorted(r.channel_partner_ids.ids) == recipients)
+        channel = (
+            MailChannel.sudo()
+            .search(
+                [
+                    ("channel_type", "=", "chat"),
+                    ("channel_partner_ids", "in", recipients),
+                ]
+            )
+            .filtered(lambda r: sorted(r.channel_partner_ids.ids) == recipients)
+        )
 
         if channel:
             values["id"] = channel.id
         else:
-            values["id"] = MailChannel.sudo().create({
-                'channel_partner_ids': [(4, partner_id) for partner_id in recipients],
-                'public': 'private',
-                'channel_type': 'chat',
-                'email_send': False,
-                'name': ', '.join(request.env['res.partner'].sudo()
-                                  .browse(recipients).mapped('name')),
-            }).id
+            values["id"] = (
+                MailChannel.sudo()
+                .create(
+                    {
+                        "channel_partner_ids": [
+                            (4, partner_id) for partner_id in recipients
+                        ],
+                        "public": "private",
+                        "channel_type": "chat",
+                        "email_send": False,
+                        "name": ", ".join(
+                            request.env["res.partner"]
+                            .sudo()
+                            .browse(recipients)
+                            .mapped("name")
+                        ),
+                    }
+                )
+                .id
+            )
         return values

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- Deactivate the public and portal access rules in website_forum related 
+    <!-- Deactivate the public and portal access rules in website_forum related
     to the followind models:
     * Forum post
     * Forum post vote
     * Forum post closing reason
     * Forum tag
-    All of these models have an access right for the Employee group in core, so 
+    All of these models have an access right for the Employee group in core, so
     no replacement right creation is needed
     -->
 
@@ -41,10 +41,10 @@
 
     <record id="website_forum.access_forum_tag_portal" model="ir.model.access">
         <field name="active" eval="False"/>
-    </record>    
+    </record>
 
     <!-- Public access to the the Forum model is also deactivated.
-    This model does not have an Employee-related permission ready in core, 
+    This model does not have an Employee-related permission ready in core,
     so it is created in ir.model.access.csv -->
 
     <record id="website_forum.access_forum_forum" model="ir.model.access">

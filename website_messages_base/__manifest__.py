@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
+#    Author: Tawasta
 #    Copyright 2019- Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,23 +19,20 @@
 ##############################################################################
 
 {
-    'name': 'Website Messages Base',
-    'summary': 'Base for website messages features',
-    'version': '12.0.0.1.0',
-    'category': 'Website',
-    'website': 'https://github.com/Tawasta/website',
-    'author': 'Oy Tawasta Technologies Ltd.',
-    'license': 'AGPL-3',
-    'application': False,
-    'installable': True,
-    'depends': [
-        'mail',
-        'website_utilities',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/res_config_settings_views.xml',
-        'views/website_message_format.xml',
-        'views/website_message_templates.xml',
+    "name": "Website Messages Base",
+    "summary": "Base for website messages features",
+    "version": "12.0.0.1.0",
+    "category": "Website",
+    "website": "https://github.com/Tawasta/website",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "depends": ["mail", "website_utilities"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/res_config_settings_views.xml",
+        "views/website_message_format.xml",
+        "views/website_message_templates.xml",
     ],
 }
