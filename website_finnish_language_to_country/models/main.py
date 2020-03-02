@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 
 from odoo import http
 from odoo.http import request
@@ -18,15 +16,19 @@ class Extension(Website):
         users = request.env['res.users'].sudo().search([])
 
         guest_users = [
-            request.env.ref('base.default_user_res_partner').id, 
-            request.env.ref('base.public_partner').id
+            request.env.ref(
+                'base.default_user_res_partner'
+            ).id,
+            request.env.ref(
+                'base.public_partner'
+            ).id
         ]
 
         if lang == request.env.ref('base.lang_fi').code:
             for user in users:
                 if (user.id == request.env.uid and
-                    request.env.uid not in guest_users and
-                    not user.country_id.id):
-                        user.country_id = request.env.ref('base.fi')
+                        request.env.uid not in guest_users and
+                        not user.country_id.id):
+                    user.country_id = request.env.ref('base.fi')
 
         return super(Extension, self).change_lang(lang, r)
