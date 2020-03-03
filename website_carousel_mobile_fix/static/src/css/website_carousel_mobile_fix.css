@@ -11,7 +11,15 @@
     height: auto !important;
 }
 
+.carousel-item {
+    min-height: auto !important;
+}
+
 .carousel-inner {
     max-height: 100% !important;
+}
+
+.o_gallery.o_slideshow > .container {
+    height: auto !important;
 }
 /* carousel fix end */
