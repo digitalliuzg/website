@@ -15,6 +15,7 @@ class Extension(Website):
         users = request.env["res.users"].sudo().search([])
 
         guest_users = [
+
             request.env.ref("base.default_user_res_partner").id,
             request.env.ref("base.public_partner").id,
         ]

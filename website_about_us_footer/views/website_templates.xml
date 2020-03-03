@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <template id="footer_custom" inherit_id="website.footer_custom">
+        <xpath expr="//div[@class='row']/div[1]" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3</attribute>
+        </xpath>
+        <xpath expr="//div[@class='row']/div[2]" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3</attribute>
+        </xpath>
+        <xpath expr="//div[@class='row']/div[3]" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3 col-lg-offset-1</attribute>
+        </xpath>
+        <xpath expr="//div[@class='row']/div[3]/h5/small" position="replace">
+            <br/>
+            <small><a href="http://www.remoran.eu" target="_blank">Main page</a></small>
+            <p/>
+        </xpath>
+        <xpath expr="//div[@class='row']/div[3]" position="after">
+            <div class='col-3'>
+                <a href="http://www.remoran.eu" target="_blank">
+                    <img src='/web/binary/company_logo'/>
+                </a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

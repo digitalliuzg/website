@@ -1,0 +1,23 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_developer_group
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-28 10:56+0000\n"
+"PO-Revision-Date: 2019-05-28 13:58+0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: en\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: website_developer_group
+#: model:res.groups,name:website_developer_group.group_website_developer_admin
+msgid "Website Admin"
+msgstr "Verkkosivun järjestelmänvalvoja"
