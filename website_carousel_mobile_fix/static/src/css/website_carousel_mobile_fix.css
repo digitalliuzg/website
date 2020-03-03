@@ -4,7 +4,7 @@
 }
 
 .s_carousel .carousel-inner .carousel-item {
-    height: auto !important;
+    height: 100vh !important;
 }
 
 .carousel {
