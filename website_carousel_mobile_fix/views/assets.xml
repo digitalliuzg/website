@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_carouesel_mobile_fix_assets" name="website_carousel_mobile_fix_assets" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/website_carousel_mobile_fix/static/src/css/website_carousel_mobile_fix.css"></link>
+        </xpath>
+
+    </template>
+</odoo>

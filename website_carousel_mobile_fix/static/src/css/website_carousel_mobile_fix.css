@@ -1,0 +1,9 @@
+/* Carousel firefox & chrome fix(works on ssafari already) */
+.s_carousel .carousel-inner {
+    height: auto !important;
+}
+
+.s_carousel .carousel-inner .carousel-item {
+    height: auto !important;
+}
+/* carousel fix end */
