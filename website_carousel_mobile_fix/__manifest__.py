@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    "name": "website_carousel_mobile_fix",
+    "name": "Website Carousel_Mobile Fix",
     "summary": "Fixes odoo website carousel mobile view",
     "author": "Tawasta",
     "license": "AGPL-3",
