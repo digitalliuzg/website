@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <template id="website_about_us_footer_footer" inherit_id="website.footer_custom">
+        <xpath expr="//div[@class='col-lg-4']" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3</attribute>
+        </xpath>
+        <xpath expr="//div[@class='col-lg-4']" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3</attribute>
+        </xpath>
+        <xpath expr="//div[@class='col-lg-4']" position="attributes">
+            <attribute name="class">col-md-3 col-lg-3 col-lg-offset-1</attribute>
+        </xpath>
+        <xpath expr="//div[@class='row']/div[3]" position="after">
+            <div class='col-md-3 col-lg-3'>
+                <img src='/web/binary/company_logo'/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
